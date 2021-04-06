@@ -72,8 +72,8 @@ body {
     vertical-align: middle;
   }
   
-  .account-img {
-    height: 125px;
+  img {
+    height: 110px;
     width: 125px;
     margin-right: 20px;
     margin-bottom: 16px;
