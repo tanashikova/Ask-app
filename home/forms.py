@@ -1,12 +1,15 @@
-# from django.forms import ModelForm, HiddenInput
-# from django.views.generic.edit import CreateView
-# from captcha.fields import CaptchaField
-# from .models import Answer
+from django import forms
+from .models import Answer
 
-# class AnswerCreateForm(ModelForm):
 
-#     captcha = CaptchaField()
-#     class Meta:
-#         model = Answer
-#         fields = ('content',)
-#         widgets = {'question' : HiddenInput()}
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ('name','content')
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'})
+        }
+ 
+
+  

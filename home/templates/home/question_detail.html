@@ -14,21 +14,24 @@
             <a class="btn btn-danger btn-sm" href="{% url 'question-delete' object.id %}">Delete</a>
           </div>
         {% endif %}
-         {% for answer in question.answers.all %}
-            <p><strong>{{ answer.user}}</strong>
-            answered {{ answer.answer_date | date:"F d, Y" }}</p>
-            <br/>
-            {{ answer.content }}
-            <br/>
-    {% endfor %}
-            <hr>
-    <form method="post" action={% url 'question-detail' question.pk %}>
-        {% csrf_token %}
-        <h3>Add a answer</h3>
-        {{ answer_form.as_p|safe }}
-        <input type="hidden" name="question" value="{{ question.pk }}">
-        <p><input type="submit"></p>
-    </form>
+         <hr>
+         <h5>Answers</h5>
+         {% if not question.answers.all %}
+            No answers for this question <a href="{% url 'answer-create' question.pk %}">Add Answer</a>
+         {% else %}
+          <a href="{% url 'answer-create' question.pk %}">Add Answer</a>
+          <br/><br/>
+            {% for answer in question.answers.all %}
+                <strong> {{ answer.name }}  </strong> 
+                <br/>
+                Answered {{ answer.date_submited |date:'F d' }}
+                <br/>
+                {{ answer.content}}
+                <br/>
+                <hr>
+            {% endfor %}
+          {% endif %}
+         
     </div>
     
   </article>
