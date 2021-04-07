@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tinymce',
+    # 'captcha',
     'crispy_forms',
     'home.apps.HomeConfig',
     'users.apps.UsersConfig',
