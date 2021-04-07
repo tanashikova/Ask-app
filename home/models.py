@@ -1,14 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+from django.urls import reverse
 
 
 class Question (models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=150)
-    content = models.TextField()
+    question = models.CharField(max_length=150)
     date_posted = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        ordering = ("-date_posted",)
+
     def __str__(self):
-        return self.title
+        return self.question
+
+    def get_absolute_url(self):
+            return reverse("question-detail", kwargs={"pk": self.pk})
+          

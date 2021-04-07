@@ -6,7 +6,7 @@
         <img class="rounded-circle z-depth-2"  src="{{ user.profile.image.url }}">
         <div class="media-body">
           <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.profile.join_date }}</p>
+          <p class="text-secondary">{{ user.profile.join_date | date:"F d, Y" }}</p>
         </div>
       </div>
       <form method="POST" enctype="multipart/form-data">
