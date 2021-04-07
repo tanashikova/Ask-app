@@ -32,6 +32,7 @@
               {% if user.is_authenticated %}
                 <li><a class="nav-item nav-link" href="{% url 'profile' %}"><i class="fas fa-user-alt"></i></a></li>
                 <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
+                 <li><button class="btn btn-outline-info btn-sm"><a class="nav-item nav-link" href="{% url 'question-create' %}">Add Question</a></button><li>
               {% else %}
                 <li><a class="nav-item nav-link" href="{% url 'login' %}">Login</a></li>
                 <li><a class="nav-item nav-link" href="{% url 'register' %}">Sign Up</a></li>

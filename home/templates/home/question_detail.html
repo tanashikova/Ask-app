@@ -1,0 +1,35 @@
+{% extends "home/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ object.author }}</a>
+        <small class="text-muted">{{ object.date_posted|date:"F d" }}</small>
+      </div>
+      <h2 class="article-title">{{ object.question }}</h2>
+       {% if object.author == user %}
+          <div>
+            <a class="btn btn-secondary btn-sm" href="{% url 'question-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm" href="{% url 'question-delete' object.id %}">Delete</a>
+          </div>
+        {% endif %}
+         {% for answer in question.answers.all %}
+            <p><strong>{{ answer.user}}</strong>
+            answered {{ answer.answer_date | date:"F d, Y" }}</p>
+            <br/>
+            {{ answer.content }}
+            <br/>
+    {% endfor %}
+            <hr>
+    <form method="post" action={% url 'question-detail' question.pk %}>
+        {% csrf_token %}
+        <h3>Add a answer</h3>
+        {{ answer_form.as_p|safe }}
+        <input type="hidden" name="question" value="{{ question.pk }}">
+        <p><input type="submit"></p>
+    </form>
+    </div>
+    
+  </article>
+{% endblock content %}
