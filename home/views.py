@@ -1,10 +1,8 @@
 from django.shortcuts import render
-from .models import Question, Answer
-from django.forms import ModelForm, HiddenInput
+from .models import Question
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.urls import reverse
-# from captcha.fields import CaptchaField
+
 
 def home(request):
     questions = Question.objects.all()
@@ -21,27 +19,9 @@ class QuestionListView(ListView):
 class QuestionDetailView(DetailView):
     model = Question
 
-    def get_context_data(self, **kwargs):
-        context = super(QuestionDetailView, self).get_context_data(**kwargs)
-        answer_form = AnswerCreateForm()
-        context['answer_form'] = answer_form
-        return context
+   
 
-class AnswerCreateForm(ModelForm):
 
-    # captcha = CaptchaField()
-
-    class Meta:
-        model = Answer
-        fields = "__all__"
-        widgets = {'question': HiddenInput()}
-        
-class AnswerCreate(CreateView):
-    model = Answer
-    form_class = AnswerCreateForm
-
-    def get_success_url(self):
-        return reverse('home:question-detail', kwargs={'pk': self.object.question.pk})
 class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     fields = ['question']
