@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
-from tinymce.models import HTMLField
+
 
 
 class Question (models.Model):
@@ -18,4 +18,20 @@ class Question (models.Model):
 
     def get_absolute_url(self):
             return reverse("question-detail", kwargs={"pk": self.pk})
+
+
+class Answer (models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="answers")
+    name = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField(max_length=240)
+    date_submited = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-date_submited',)
+
+
+    def __str__(self):
+        return self.content
+
           
