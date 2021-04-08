@@ -14,6 +14,18 @@
             <a class="btn btn-danger btn-sm" href="{% url 'question-delete' object.id %}">Delete</a>
           </div>
         {% endif %}
+        <br/>
+        <form action="{% url 'question-like' question.pk %}" method="POST">
+              {% csrf_token %}
+            {% if user.is_authenticated %}
+              {% if liked %}
+              <button type="submit", name="question_id", value="{{question.id}}"><i class="far fa-thumbs-down"></i></button> 
+            {% else %}
+              <button type="submit", name="question_id", value="{{question.id}}"><i class="far fa-thumbs-up"></i></button> 
+            {% endif %}
+          {% endif %}
+              {{ likes_count }} Likes
+        </form>
          <hr>
          <h5>Answers</h5>
           <a href="{% url 'answer-create' question.pk %}">Add Answer</a>
