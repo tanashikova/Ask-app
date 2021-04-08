@@ -1,10 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from .models import Question,Answer
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import AnswerForm
-from django.urls import reverse_lazy
-
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
 def home(request):
     questions = Question.objects.all()
     return render(request, 'home/home.html', {'questions':questions})
@@ -17,10 +17,37 @@ class QuestionListView(ListView):
     template_name = 'home/home.html'
     context_object_name = 'questions'
 
+
+def LikeView(request, pk):
+    question=get_object_or_404(Question, id=request.POST.get('question_id'))
+    liked = False
+    if question.likes.filter(id=request.user.id).exists():
+        question.likes.remove(request.user)
+        liked = False
+    else:
+        question.likes.add(request.user)
+        liked = True
+    # return redirect('question-detail', question_id )
+    return HttpResponseRedirect(reverse('question-detail', args=[str(pk)]))
+
 class QuestionDetailView(DetailView):
     model = Question
+    template_name = 'home/question_detail.html'
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super(QuestionDetailView, self).get_context_data(*args, **kwargs)
+        data = get_object_or_404(Question, id=self.kwargs['pk'])
+        likes_count = data.likes_count()
+        liked = False
+        if data.likes.filter(id=self.request.user.id).exists():
+            liked = True
 
+        context['likes_count'] = likes_count
+        return context
    
+
+
+    
 
 
 class QuestionCreateView(LoginRequiredMixin, CreateView):
