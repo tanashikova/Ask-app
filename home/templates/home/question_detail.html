@@ -16,22 +16,26 @@
         {% endif %}
          <hr>
          <h5>Answers</h5>
-         {% if not question.answers.all %}
-            No answers for this question <a href="{% url 'answer-create' question.pk %}">Add Answer</a>
-         {% else %}
           <a href="{% url 'answer-create' question.pk %}">Add Answer</a>
           <br/><br/>
             {% for answer in question.answers.all %}
-                <strong> {{ answer.name }}  </strong> 
+                <strong> {{ answer.user }}  </strong> 
                 <br/>
                 Answered {{ answer.date_submited |date:'F d' }}
                 <br/>
                 {{ answer.content}}
                 <br/>
+
+            {% if answer.user == user %}
+          <div>
+            <a class="btn btn-secondary btn-sm" href="{% url 'edit' question.id answer.id %}">Update</a>
+            <a class="btn btn-danger btn-sm" href="{% url 'answer-delete' answer.id %}">Delete</a>
+          </div>
+        {% endif %}
                 <hr>
             {% endfor %}
-          {% endif %}
          
+           
     </div>
     
   </article>

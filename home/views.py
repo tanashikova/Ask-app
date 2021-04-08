@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Question,Answer
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -68,14 +68,34 @@ class AddAnswerView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.question_id = self.kwargs['pk']
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
     
     def get_success_url(self):
 
        return reverse_lazy('question-detail', kwargs={'pk': self.kwargs['pk']})
-    #  def test_func(self):
-    #     question = self.get_object()
-    #     if self.request.user == question.author:
-    #         return True
-    #     return False
+
+# edit answer function 
+def edit_answer(request, question_id, answer_id):
+  question = Question.objects.get(id=question_id)
+  answer = Answer.objects.get(id=answer_id)
+  edit_form = AnswerForm(request.POST or None, instance=answer)
+  if request.POST and edit_form.is_valid():
+    edit_form.save()
+    return redirect('question-detail', question_id )
+
+  else:
+    return render(request,'home/edit.html', {'edit_form': edit_form, 'question':question, 'answer':answer })
+
+
+
+class AnswerDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Answer
+    success_url = '/'
+
+    def test_func(self):
+      answer = self.get_object()
+      if self.request.user == answer.user:
+        return True
+      return False
