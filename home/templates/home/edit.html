@@ -1,0 +1,10 @@
+{% extends 'home/base.html' %}
+{% block content %}
+  <h1>Edit your answer here</h1>
+
+  <form method="POST" action="{% url 'edit' question.id answer.id %}">
+    {% csrf_token %}
+    {{ edit_form.as_p }}
+    <input type="submit" class="btn blue" value="Edit">
+  </form>
+{% endblock content %}
