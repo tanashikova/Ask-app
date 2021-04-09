@@ -22,29 +22,27 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-           <ul class="right">
+  <!--          <a class="navbar-brand mr-4" href="{% url 'home' %}">Ask</a> -->
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <li><a class="nav-item nav-link" href="{% url 'home' %}"><i class="fas fa-home fa-lg"></i></a></li>
-              <li><a class="nav-item nav-link" href="{% url 'about' %}">About</a></li>
+              <a class="nav-item nav-link" href="{% url 'home' %}"><i class="fas fa-home fa-lg"></i></a>
+              <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
             </div>
              <div class="navbar-nav">
               {% if user.is_authenticated %}
-                <li><a class="nav-item nav-link" href="{% url 'profile' %}"><i class="fas fa-user-alt"></i></a></li>
-                <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
-                 <li><button class="btn btn-outline-info btn-sm"><a class="nav-item nav-link" href="{% url 'question-create' %}">Add Question</a></button><li>
+                <a class="nav-item nav-link" href="{% url 'profile' %}"><i class="fas fa-user-alt"></i></a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
               {% else %}
-                <li><a class="nav-item nav-link" href="{% url 'login' %}">Login</a></li>
-                <li><a class="nav-item nav-link" href="{% url 'register' %}">Sign Up</a></li>
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Sign Up</a>
               {% endif %}
-              </ul>
+              <button class="btn-outline-primary btn-xsm"><a class="nav-item nav-link" href="{% url 'question-create' %}">Add Question</a></button>
             </div>
           </div>
         </div>
       </nav>
     </header>
-     <main role="main" class="container">
-      <div class="row">
+    <div class="d-flex justify-content-center">
         <div class="col-md-8">
           {% if messages %}
             {% for message in messages %}
@@ -55,23 +53,6 @@
           {% endif %}
           {% block content %}{% endblock %}
         </div>
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-
-    </main>
-
 
 </body>
 </html>
