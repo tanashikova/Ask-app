@@ -28,7 +28,7 @@ class Answer (models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="answers")
     name = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField(max_length=240)
+    content = models.TextField()
     date_submited = models.DateTimeField(auto_now_add=True)
 
     class Meta:
