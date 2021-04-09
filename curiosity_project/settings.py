@@ -138,11 +138,6 @@ AWS_DEFAULT_ACL = None
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
-AWS_S3_REGION_NAME = 'us-west-1' #change to your region
+AWS_S3_REGION_NAME = 'us-west-1' 
 AWS_S3_ADDRESSING_STYLE = 'virtual'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
-
-# print(os.environ.get('AWS_ACCESS_KEY_ID'))
-# # print(os.environ.get('AWS_SECRET_ACCESS_KEY'))
-# # print(os.environ.get('AWS_STORAGE_BUCKET_NAME'))
