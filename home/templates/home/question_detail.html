@@ -1,5 +1,6 @@
 {% extends "home/base.html" %}
 {% block content %}
+<div class='main-container'>
   <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
     <div class="media-body">
@@ -10,8 +11,8 @@
       <h2 class="article-title">{{ object.question }}</h2>
        {% if object.author == user %}
           <div>
-            <a class="btn btn-secondary btn-sm" href="{% url 'question-update' object.id %}">Update</a>
-            <a class="btn btn-danger btn-sm" href="{% url 'question-delete' object.id %}">Delete</a>
+            <a href="{% url 'question-update' object.id %}"><i class="fas fa-edit"></i></a>
+            <a href="{% url 'question-delete' object.id %}"><i class="fas fa-trash-alt"></i></a>
           </div>
         {% endif %}
         <br/>
@@ -19,9 +20,9 @@
               {% csrf_token %}
             {% if user.is_authenticated %}
               {% if liked %}
-              <button type="submit", name="question_id", value="{{question.id}}"><i class="far fa-thumbs-down"></i></button> 
+              <button class="btn btn-link btn-lg" type="submit", name="question_id", value="{{question.id}}"><i class="far fa-thumbs-down"></i></button> 
             {% else %}
-              <button type="submit", name="question_id", value="{{question.id}}"><i class="far fa-thumbs-up"></i></button> 
+              <button class="btn btn-link btn-lg" type="submit", name="question_id", value="{{question.id}}"><i class="far fa-thumbs-up"></i></button> 
             {% endif %}
           {% endif %}
               {{ likes_count }} Likes
@@ -40,8 +41,8 @@
 
             {% if answer.user == user %}
           <div>
-            <a class="btn btn-secondary btn-sm" href="{% url 'edit' question.id answer.id %}">Update</a>
-            <a class="btn btn-danger btn-sm" href="{% url 'answer-delete' answer.id %}">Delete</a>
+            <a href="{% url 'edit' question.id answer.id %}"><i class="fas fa-edit"></i></a>
+            <a href="{% url 'answer-delete' answer.id %}"><i class="fas fa-trash-alt"></i></a>
           </div>
         {% endif %}
                 <hr>
@@ -51,4 +52,5 @@
     </div>
     
   </article>
+</div>
 {% endblock content %}
