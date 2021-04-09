@@ -13,6 +13,7 @@
           <div>
             <a href="{% url 'question-update' object.id %}"><i class="fas fa-edit"></i></a>
             <a href="{% url 'question-delete' object.id %}"><i class="fas fa-trash-alt"></i></a>
+            <a href="{% url 'answer-create' question.pk %}">Add Answer</a>
           </div>
         {% endif %}
         <br/>
@@ -29,7 +30,6 @@
         </form>
          <hr>
          <h5>Answers</h5>
-          <a href="{% url 'answer-create' question.pk %}">Add Answer</a>
           <br/><br/>
             {% for answer in question.answers.all %}
                 <strong> {{ answer.user }}  </strong> 
