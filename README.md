@@ -34,6 +34,15 @@ python manage.py migrate
 ```
 python manage.py createsuperuser
 ```
+
+Also you may need S3 bucket on AWS for image upload feature. 
+Place your *keys* on .bash_profile
+```
+export AWS_ACCESS_KEY_ID ="your key id"
+export AWS_SECRET_ACCESS_KEY="your secret key"
+export AWS_STORAGE_BUCKET_NAME="your bucket name"
+```
+
 ## User stories
 
 ASK app users are smart people who always seek knowledge and love to share their thoughts and experience. 
