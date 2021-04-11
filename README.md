@@ -10,12 +10,12 @@ ASK is an application build on Django that allows users to receive answers to th
 
 **Technologies**
 
-Python
-Django
-HTML
-CSS
-Bootstrap
-AWS S3 bucket for image upload
+- Python
+- Django
+- HTML
+- CSS
+- Bootstrap
+- AWS S3 bucket for image upload
 
 **installation steps**
 After clonning run following command 
@@ -37,15 +37,15 @@ python manage.py createsuperuser
 
 ASK app users are smart people who always seek knowledge and love to share their thoughts and experience. 
 
-As a user, I’m able to register for the web application.
-As a user, I’m able to log in to the web application.
-As a user, I’m able to log out of the web application.
-As a user, I’m able to update my account from the web application.
-As a user, I’m able to read other users questions and comments
-As logged in user, I’m able to post a question
-As logged in user, I’m able to leave an answer to the questions as a comment
-As logged in user, I’m able to delete my comments
-As logged in user, I’m able to edit my comments
+- As a user, I’m able to register for the web application.
+- As a user, I’m able to log in to the web application.
+- As a user, I’m able to log out of the web application.
+- As a user, I’m able to update my account from the web application.
+- As a user, I’m able to read other users questions and comments
+- As logged in user, I’m able to post a question
+- As logged in user, I’m able to leave an answer to the questions as a comment
+- As logged in user, I’m able to delete my comments
+- As logged in user, I’m able to edit my comments
 
 **wireframes**
 Wireframes for this application you can find [here](https://xd.adobe.com/view/b66643d1-23e2-4097-8766-f687c2cd3acd-e335/)
