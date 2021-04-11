@@ -17,7 +17,7 @@ ASK is an application build on Django that allows users to receive answers to th
 - Bootstrap
 - AWS S3 bucket for image upload
 
-## installation steps
+## Installation steps
 
 **After clonning run following command**
 ```
@@ -34,7 +34,7 @@ python manage.py migrate
 ```
 python manage.py createsuperuser
 ```
-## user stories
+## User stories
 
 ASK app users are smart people who always seek knowledge and love to share their thoughts and experience. 
 
@@ -48,15 +48,15 @@ ASK app users are smart people who always seek knowledge and love to share their
 - As logged in user, I’m able to delete my comments
 - As logged in user, I’m able to edit my comments
 
-## wireframes
+## Wireframes
 
 Wireframes for this application you can find [here](https://xd.adobe.com/view/b66643d1-23e2-4097-8766-f687c2cd3acd-e335/)
 
-## entity relationship diagrams
+## Entity relationship diagrams
 
 ![Entity relationship diagrams](img/ERD.png)
 
-## future features
+## Future features
 
 - Password reset
 - Likes and dislikes for answers section
