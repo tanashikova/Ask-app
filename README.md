@@ -36,7 +36,7 @@ python manage.py createsuperuser
 ```
 
 Also you may need S3 bucket on AWS for image upload feature. 
-Place your *keys* on .bash_profile
+Hide your *Secret keys* in .bash_profile
 ```
 export AWS_ACCESS_KEY_ID ="your key id"
 export AWS_SECRET_ACCESS_KEY="your secret key"
