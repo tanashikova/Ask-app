@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import AnswerForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
+
 def home(request):
     questions = Question.objects.all()
     return render(request, 'home/home.html', {'questions':questions})
@@ -27,7 +28,6 @@ def LikeView(request, pk):
     else:
         question.likes.add(request.user)
         liked = True
-    # return redirect('question-detail', question_id )
     return HttpResponseRedirect(reverse('question-detail', args=[str(pk)]))
 
 class QuestionDetailView(DetailView):
@@ -45,11 +45,6 @@ class QuestionDetailView(DetailView):
         context['likes_count'] = likes_count
         return context
    
-
-
-    
-
-
 class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     fields = ['question']
@@ -63,6 +58,7 @@ class QuestionCreateView(LoginRequiredMixin, CreateView):
         if self.request.user == question.author:
             return True
         return False
+
 class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Question
     fields = ['question']
@@ -76,6 +72,7 @@ class QuestionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if self.request.user == question.author:
             return True
         return False
+
 class QuestionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Question
     success_url = '/'
@@ -85,8 +82,6 @@ class QuestionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == question.author:
             return True
         return False
-
-
 
 class AddAnswerView(LoginRequiredMixin, CreateView):
     model = Answer
